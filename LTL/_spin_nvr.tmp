@@ -1,0 +1,21 @@
+never spec {    /* !(([] ((! ((((state==LUZ_OFF)) && (presencia)) && ([] (! (lumAlta))))) || (<> ((state==LUZ_ON))))) && ([] ((! (((state==LUZ_ON)) && ((! (presencia)) || ([] (lumAlta))))) || (<> ((state==LUZ_OFF)))))) */
+T0_init:
+	do
+	:: ((! (lumAlta)) && ! (((state==LUZ_ON))) && (((state==LUZ_OFF)) && (presencia))) -> goto accept_S5
+	:: (! (((state==LUZ_OFF))) && ((state==LUZ_ON)) && (lumAlta)) -> goto accept_S13
+	:: ((! (presencia)) && ! (((state==LUZ_OFF))) && ((state==LUZ_ON))) -> goto accept_S9
+	:: (1) -> goto T0_init
+	od;
+accept_S5:
+	do
+	:: ((! (lumAlta)) && ! (((state==LUZ_ON)))) -> goto accept_S5
+	od;
+accept_S13:
+	do
+	:: (! (((state==LUZ_OFF))) && (lumAlta)) -> goto accept_S13
+	od;
+accept_S9:
+	do
+	:: (! (((state==LUZ_OFF)))) -> goto accept_S9
+	od;
+}
